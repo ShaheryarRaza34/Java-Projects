@@ -1,12 +1,11 @@
 package practice;
-import java.util.*;
+
 public class CricketProblem {
 	
 	
 	public static String Cricket(int I1, int I2, int I3,int I4, int I5)
 	{	String result="";
 		int matchPlayed;
-		int matchPoints;
 		if((I1+I2+I3)==I4)
 		{
 			matchPlayed=I4;
