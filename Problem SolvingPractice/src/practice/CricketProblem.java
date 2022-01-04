@@ -69,7 +69,7 @@ public class CricketProblem {
 			{
 				result = Integer.toString(c)+" "+Integer.toString(b)+" "+Integer.toString(a)+" "+Integer.toString(points);
 			}
-			return result + " ";
+			return result;
 		}
 	
 	
