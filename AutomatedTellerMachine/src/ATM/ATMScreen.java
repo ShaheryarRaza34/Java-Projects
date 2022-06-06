@@ -1,25 +1,11 @@
 package ATM;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import java.awt.GridBagConstraints;
-import java.awt.CardLayout;
-
-import javax.imageio.ImageIO;
+import java.awt.*;
+import javax.swing.*;
+//import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -57,7 +43,8 @@ public class ATMScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame("Moneyatre");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 467, 217);
 		frame.setLocationRelativeTo(null);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,17 +79,22 @@ public class ATMScreen {
 		
 		
 		//username and password Panel
-		JPanel id_and_pass_panel = new JPanel();
-		id_and_pass_panel.setForeground(new Color(255, 255, 255));
-		id_and_pass_panel.setBackground(new Color(75, 0, 130));
-		id_and_pass_panel.setLayout(new GridLayout(2, 2, 2, 0));
+		JPanel id_and_pass_submit_panel = new JPanel();
+		id_and_pass_submit_panel.setForeground(new Color(255, 255, 255));
+		id_and_pass_submit_panel.setBackground(new Color(75, 0, 130));
+		id_and_pass_submit_panel.setLayout(null);
 		
 		JLabel accountNumberLabel = new JLabel("Account Number:");
-		accountNumberLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
+		accountNumberLabel.setSize(136, 30);
+		accountNumberLabel.setLocation(10, 26);
+		accountNumberLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		accountNumberLabel.setForeground(new Color(255, 255, 255));
-		id_and_pass_panel.add(accountNumberLabel);
+		id_and_pass_submit_panel.add(accountNumberLabel);
 		
-		JTextField accountNumberInput = new JTextField("AccountNumber");
+		JTextField accountNumberInput = new JTextField("Please enter your AccountNumber");
+		accountNumberInput.setHorizontalAlignment(SwingConstants.CENTER);
+		accountNumberInput.setSize(278, 20);
+		accountNumberInput.setLocation(146, 29);
 		accountNumberInput.setForeground(Color.DARK_GRAY);
 		accountNumberInput.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 17));
 		accountNumberInput.setEnabled(false);
@@ -114,16 +106,22 @@ public class ATMScreen {
                 accountNumberInput.setText("");
             }
         });
-		accountNumberInput.setBackground(new Color(192, 192, 192));
+		accountNumberInput.setBackground(Color.WHITE);
 		accountNumberInput.setColumns(0);
-		id_and_pass_panel.add(accountNumberInput);
+		id_and_pass_submit_panel.add(accountNumberInput);
 		
-		JLabel passwordLabel = new JLabel("PINCODE:");
-		passwordLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
-		passwordLabel.setForeground(new Color(255, 255, 255));
-		id_and_pass_panel.add(passwordLabel);
+		JLabel passwordLabel = new JLabel("4-digit PINCODE:");
+		passwordLabel.setSize(136, 30);
+		passwordLabel.setLocation(10, 67);
+		passwordLabel.setBackground(Color.WHITE);
+		passwordLabel.setIcon(null);
+		passwordLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		passwordLabel.setForeground(Color.WHITE);
+		id_and_pass_submit_panel.add(passwordLabel);
 		
 		JTextField passwordInput = new JTextField("Please Enter 4 digit PIN CODE");
+		passwordInput.setSize(278, 20);
+		passwordInput.setLocation(146, 72);
 		passwordInput.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 17));
 		passwordInput.setForeground(Color.DARK_GRAY);
 		passwordInput.setEnabled(false);
@@ -135,15 +133,27 @@ public class ATMScreen {
                 passwordInput.setText("");
             }
         });
-		passwordInput.setBackground(new Color(192, 192, 192));
+		passwordInput.setBackground(Color.WHITE);
 		passwordInput.setColumns(1);
-		passwordInput.setHorizontalAlignment(SwingConstants.LEFT);
-		id_and_pass_panel.add(passwordInput);
+		passwordInput.setHorizontalAlignment(SwingConstants.CENTER);
+		id_and_pass_submit_panel.add(passwordInput);
 		
+		//submit button
+		JButton verify = new JButton("Submit");
+		verify.setHorizontalAlignment(SwingConstants.LEFT);
+		verify.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
+		verify.setForeground(new Color(75, 0, 130));
+		verify.setBackground(Color.WHITE);
+		verify.setFocusPainted(false);
+		verify.setBounds(350, 103, 74, 22);
+		id_and_pass_submit_panel.add(verify);
 		
 		//OUTER PANE Addition
 		panel.add(innerPanel, BorderLayout.NORTH);
-		panel.add(id_and_pass_panel,BorderLayout.CENTER);
+		panel.add(id_and_pass_submit_panel,BorderLayout.CENTER);
+		
+		
+		
 		
 		
 	}
