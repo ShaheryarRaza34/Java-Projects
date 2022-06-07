@@ -1,8 +1,11 @@
-package ATM;
+package moneyatreATM;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 //import javax.imageio.ImageIO;
@@ -10,7 +13,7 @@ import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-public class ATMScreen {
+public class LoginScreenGUI {
 
 	private JFrame frame;
 	
@@ -22,7 +25,7 @@ public class ATMScreen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ATMScreen window = new ATMScreen();
+					LoginScreenGUI window = new LoginScreenGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +37,7 @@ public class ATMScreen {
 	/**
 	 * Create the application.
 	 */
-	public ATMScreen() {
+	public LoginScreenGUI() {
 		initialize();
 	}
 
@@ -119,7 +122,7 @@ public class ATMScreen {
 		passwordLabel.setForeground(Color.WHITE);
 		id_and_pass_submit_panel.add(passwordLabel);
 		
-		JTextField passwordInput = new JTextField("Please Enter 4 digit PIN CODE");
+		JPasswordField passwordInput = new JPasswordField();
 		passwordInput.setSize(278, 20);
 		passwordInput.setLocation(146, 72);
 		passwordInput.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 17));
@@ -146,7 +149,19 @@ public class ATMScreen {
 		verify.setBackground(Color.WHITE);
 		verify.setFocusPainted(false);
 		verify.setBounds(350, 103, 74, 22);
+		verify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				Moneyatre.verify(accountNumberInput.getText(), Integer.parseInt(passwordInput.getText()));
+			}
+		});
+		
+		 
 		id_and_pass_submit_panel.add(verify);
+		
+		
+		
+		
 		
 		//OUTER PANE Addition
 		panel.add(innerPanel, BorderLayout.NORTH);
