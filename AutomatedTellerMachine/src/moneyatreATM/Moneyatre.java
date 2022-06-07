@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Moneyatre {
@@ -39,8 +40,51 @@ public static void verify(String accountNumber,Integer Pincode) {
 	else {
 		JOptionPane.showMessageDialog(null,"INVALID ACCOUNT");
 	}
-	
+		
 	
 	
 }
+
+public static void withdraw(String accountNumber, Double amount)
+{
+	
+	if((Double)Accounts.get(accountNumber).get(2)>=amount)
+	{
+		JOptionPane.showOptionDialog(null, 
+		        "Is Amount Correct?", 
+		        "Confirmation", 
+		        JOptionPane.OK_OPTION, 
+		        JOptionPane.INFORMATION_MESSAGE, 
+		        null, 
+		        new String[]{"Confirm", "Go Back"}, // this is the array
+		        "default");
+		Accounts.get(accountNumber).set(2,((Double)Accounts.get(accountNumber).get(2)-amount));
+	}
+	else {
+		JOptionPane.showMessageDialog(null, "Insufficient Balance");
+		
+	}
+}
+
+public static boolean validateAccount(String accountNumber)
+{
+	return((Accounts.containsKey(accountNumber))? true:false);
+	
+}
+public static void transfer(String depositor,String payee, double amount)
+{	if(validateAccount(depositor)==false||validateAccount(payee)==false)
+		JOptionPane.showMessageDialog(null, "Invalid Account");
+	else {
+		if((Double)Accounts.get(depositor).get(2)>=amount)
+		{
+			Accounts.get(depositor).set(2,((Double)Accounts.get(depositor).get(2)-amount));
+			Accounts.get(payee).set(2,(Double)Accounts.get(payee).get(2)+amount);
+			JOptionPane.showMessageDialog(null,"Transfer Successfull");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Insufficient Balance");
+		}
+	}
+}
+
 }
