@@ -9,11 +9,11 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class Moneyatre {
- static Map<String,ArrayList<Object>> Accounts = new HashMap<String,ArrayList<Object>>();
+ static Map<String,Accounts> AccountsList = new HashMap<String,Accounts>();
 
-public static void addAccount(String accountNumber,ArrayList<Object> accountInfo) {
+public static void addAccount(String accountNumber,Accounts newAccount) {
 	try {
-	Accounts.put(accountNumber,accountInfo);
+	AccountsList.put(accountNumber,newAccount);
 	}
 	catch(Exception e)
 	{
@@ -23,11 +23,11 @@ public static void addAccount(String accountNumber,ArrayList<Object> accountInfo
 
 public static void printAccounts()
 {
-	System.out.println(Accounts.toString());
+	System.out.println(AccountsList.toString());
 }
-public static void verify(String accountNumber,Integer Pincode) {
-	if(Accounts.containsKey(accountNumber)) {
-		if(Accounts.get(accountNumber).get(1).equals(Pincode))
+public static void verify(String accountNumber,int Pincode) {
+	if(AccountsList.containsKey(accountNumber)) {
+		if(AccountsList.get(accountNumber).password==Pincode)
 		{
 			System.out.println("Verified");
 		}
@@ -45,10 +45,10 @@ public static void verify(String accountNumber,Integer Pincode) {
 	
 }
 
-public static void withdraw(String accountNumber, Double amount)
+public static void withdraw(String accountNumber, double amount)
 {
 	
-	if((Double)Accounts.get(accountNumber).get(2)>=amount)
+	if(AccountsList.get(accountNumber).getBalance()>=amount)
 	{
 		JOptionPane.showOptionDialog(null, 
 		        "Is Amount Correct?", 
@@ -58,7 +58,7 @@ public static void withdraw(String accountNumber, Double amount)
 		        null, 
 		        new String[]{"Confirm", "Go Back"}, // this is the array
 		        "default");
-		Accounts.get(accountNumber).set(2,((Double)Accounts.get(accountNumber).get(2)-amount));
+		AccountsList.get(accountNumber).setBalance(AccountsList.get(accountNumber).getBalance()-amount);
 	}
 	else {
 		JOptionPane.showMessageDialog(null, "Insufficient Balance");
@@ -68,17 +68,17 @@ public static void withdraw(String accountNumber, Double amount)
 
 public static boolean validateAccount(String accountNumber)
 {
-	return((Accounts.containsKey(accountNumber))? true:false);
+	return((AccountsList.containsKey(accountNumber))? true:false);
 	
 }
 public static void transfer(String depositor,String payee, double amount)
 {	if(validateAccount(depositor)==false||validateAccount(payee)==false)
 		JOptionPane.showMessageDialog(null, "Invalid Account");
 	else {
-		if((Double)Accounts.get(depositor).get(2)>=amount)
+		if(AccountsList.get(depositor).getBalance()>=amount)
 		{
-			Accounts.get(depositor).set(2,((Double)Accounts.get(depositor).get(2)-amount));
-			Accounts.get(payee).set(2,(Double)Accounts.get(payee).get(2)+amount);
+			AccountsList.get(depositor).setBalance((AccountsList.get(depositor).getBalance()-amount));
+			AccountsList.get(payee).setBalance((Double)AccountsList.get(payee).getBalance()+amount);
 			JOptionPane.showMessageDialog(null,"Transfer Successfull");
 		}
 		else {
@@ -86,5 +86,10 @@ public static void transfer(String depositor,String payee, double amount)
 		}
 	}
 }
-
+public static String getAccountBalance(String accountNumber) {
+	return String.format("%.2f",AccountsList.get(accountNumber).getBalance());
+}
+public static String getAccountTitle(String accountNumber) {
+	return AccountsList.get(accountNumber).getName();
+}
 }

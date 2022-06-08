@@ -6,19 +6,12 @@ import java.util.Arrays;
 public class MoneyatreTesting {
 
 	public static void main(String[] args) {
-		Moneyatre.addAccount("1047", new ArrayList<Object>(Arrays.asList("Shaheryar Raza", 2244, 200.8)));
-		Moneyatre.addAccount("1048", new ArrayList<Object>(Arrays.asList("Ahmed", 2198, 260.8)));
-		Moneyatre.printAccounts();
-		Moneyatre.verify("1047", 2244);
-		Moneyatre.withdraw("1047", (double)180.0);
-		Moneyatre.printAccounts();
-		Moneyatre.transfer("1047", "1048",(double) 150.0);
 		
-		Moneyatre.printAccounts();
-		
-		Moneyatre.transfer("1048", "1047",(double) 400.0);
-		Moneyatre.printAccounts();
-		
+		Moneyatre.addAccount("1047",new Accounts("Shaheryar Raza", 2244, 200.8));
+		Moneyatre.addAccount("1048", new Accounts("Ahmed", 2198, 260.8));
+		Moneyatre.transfer("1047","1048",200.78);
+		System.out.println(Moneyatre.getAccountBalance("1047"));
+		System.out.println(Moneyatre.getAccountBalance("1048"));
 		
 	}
 
