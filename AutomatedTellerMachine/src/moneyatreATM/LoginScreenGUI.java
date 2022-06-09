@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.Dialog.ModalExclusionType;
 
 public class LoginScreenGUI {
 
@@ -46,9 +48,11 @@ public class LoginScreenGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame("Moneyatre");
+		frame.setAutoRequestFocus(false);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 467, 217);
 		frame.setLocationRelativeTo(null);
+		frame.setUndecorated(true);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
@@ -56,33 +60,38 @@ public class LoginScreenGUI {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(75, 0, 130));
 		frame.getContentPane().add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel innerPanel = new JPanel();
-		innerPanel.setBackground(new Color(75, 0, 130));
-		innerPanel.setLayout(new BorderLayout(0, 0));
+		innerPanel.setForeground(Color.WHITE);
+		innerPanel.setBounds(0, 0, 467, 51);
+		innerPanel.setBackground(Color.WHITE);
+		innerPanel.setLayout(null);
 		
 		
 		//Welcome Label
 		JLabel welcomeLabel = new JLabel("Welcome to Moneyatre");
+		welcomeLabel.setBounds(102, 23, 268, 19);
 		welcomeLabel.setVerticalAlignment(SwingConstants.TOP);
 		welcomeLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
-		welcomeLabel.setForeground(new Color(255, 255, 255));
-		welcomeLabel.setBackground(new Color(75, 0, 130));
+		welcomeLabel.setForeground(new Color(75, 0, 130));
+		welcomeLabel.setBackground(Color.WHITE);
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		innerPanel.add(welcomeLabel,BorderLayout.CENTER);
+		innerPanel.add(welcomeLabel);
 		
 		//Title Label
 		
 		JLabel lblNewLabel_2 = new JLabel("Moneyatre");
+		lblNewLabel_2.setBounds(102, 0, 255, 23);
+		lblNewLabel_2.setBackground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setForeground(new Color(75,0,130));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		innerPanel.add(lblNewLabel_2, BorderLayout.NORTH);
+		innerPanel.add(lblNewLabel_2);
 		
 		
 		//username and password Panel
 		JPanel id_and_pass_submit_panel = new JPanel();
+		id_and_pass_submit_panel.setBounds(0, 50, 467, 167);
 		id_and_pass_submit_panel.setForeground(new Color(255, 255, 255));
 		id_and_pass_submit_panel.setBackground(new Color(75, 0, 130));
 		id_and_pass_submit_panel.setLayout(null);
@@ -95,12 +104,12 @@ public class LoginScreenGUI {
 		id_and_pass_submit_panel.add(accountNumberLabel);
 		
 		JTextField accountNumberInput = new JTextField("Please enter your AccountNumber");
+		accountNumberInput.setEnabled(false);
 		accountNumberInput.setHorizontalAlignment(SwingConstants.CENTER);
 		accountNumberInput.setSize(278, 20);
 		accountNumberInput.setLocation(146, 29);
 		accountNumberInput.setForeground(Color.DARK_GRAY);
 		accountNumberInput.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 17));
-		accountNumberInput.setEnabled(false);
 		accountNumberInput.setDisabledTextColor(Color.DARK_GRAY);
 		accountNumberInput.addMouseListener(new MouseAdapter(){
             @Override
@@ -122,12 +131,12 @@ public class LoginScreenGUI {
 		passwordLabel.setForeground(Color.WHITE);
 		id_and_pass_submit_panel.add(passwordLabel);
 		
-		JPasswordField passwordInput = new JPasswordField();
+		JPasswordField passwordInput = new JPasswordField("");
+		passwordInput.setEnabled(false);
 		passwordInput.setSize(278, 20);
 		passwordInput.setLocation(146, 72);
 		passwordInput.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 17));
 		passwordInput.setForeground(Color.DARK_GRAY);
-		passwordInput.setEnabled(false);
 		passwordInput.setDisabledTextColor(Color.DARK_GRAY);
 		passwordInput.addMouseListener(new MouseAdapter(){
             @Override
@@ -158,14 +167,27 @@ public class LoginScreenGUI {
 		
 		 
 		id_and_pass_submit_panel.add(verify);
+		panel.setLayout(null);
 		
 		
 		
 		
 		
 		//OUTER PANE Addition
-		panel.add(innerPanel, BorderLayout.NORTH);
-		panel.add(id_and_pass_submit_panel,BorderLayout.CENTER);
+		panel.add(innerPanel);
+		
+		JLabel close = new JLabel("X");
+		close.setForeground(new Color(75, 0, 130));
+		close.setFont(new Font("Tw Cen MT", Font.BOLD, 34));
+		close.setHorizontalAlignment(SwingConstants.CENTER);
+		close.setBounds(434, 2, 23, 19);
+		close.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.exit(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		innerPanel.add(close);
+		panel.add(id_and_pass_submit_panel);
 		
 		
 		
