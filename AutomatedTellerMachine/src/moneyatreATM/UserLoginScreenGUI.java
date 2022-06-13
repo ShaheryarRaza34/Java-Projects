@@ -1,53 +1,56 @@
 package moneyatreATM;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+//import java.awt.event.MouseListener;
+//import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 //import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Dialog.ModalExclusionType;
+//import java.awt.Dialog.ModalExclusionType;
+import javax.swing.border.LineBorder;
 
-public class LoginScreenGUI {
+public class UserLoginScreenGUI {
 
-	private JFrame frame;
+	public JFrame frame;
 	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginScreenGUI window = new LoginScreenGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					LoginScreenGUI window = new LoginScreenGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public LoginScreenGUI() {
+	public UserLoginScreenGUI() {
+		
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame("Moneyatre");
+		
 		frame.setAutoRequestFocus(false);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 467, 217);
@@ -65,6 +68,7 @@ public class LoginScreenGUI {
 		innerPanel.setForeground(Color.WHITE);
 		innerPanel.setBounds(0, 0, 467, 51);
 		innerPanel.setBackground(Color.WHITE);
+		innerPanel.setBorder(new LineBorder(new Color(75, 0, 130), 2, true));
 		innerPanel.setLayout(null);
 		
 		
@@ -80,13 +84,13 @@ public class LoginScreenGUI {
 		
 		//Title Label
 		
-		JLabel lblNewLabel_2 = new JLabel("Moneyatre");
-		lblNewLabel_2.setBounds(102, 0, 255, 23);
-		lblNewLabel_2.setBackground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		lblNewLabel_2.setForeground(new Color(75,0,130));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		innerPanel.add(lblNewLabel_2);
+		JLabel Title = new JLabel("Moneyatre");
+		Title.setBounds(102, 0, 255, 23);
+		Title.setBackground(Color.WHITE);
+		Title.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
+		Title.setForeground(new Color(75,0,130));
+		Title.setHorizontalAlignment(SwingConstants.CENTER);
+		innerPanel.add(Title);
 		
 		
 		//username and password Panel
@@ -159,6 +163,7 @@ public class LoginScreenGUI {
 		verify.setFocusPainted(false);
 		verify.setBounds(350, 103, 74, 22);
 		verify.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e)
 			{
 				Moneyatre.verify(accountNumberInput.getText(), Integer.parseInt(passwordInput.getText()));
@@ -180,7 +185,7 @@ public class LoginScreenGUI {
 		close.setForeground(new Color(75, 0, 130));
 		close.setFont(new Font("Tw Cen MT", Font.BOLD, 34));
 		close.setHorizontalAlignment(SwingConstants.CENTER);
-		close.setBounds(434, 2, 23, 19);
+		close.setBounds(434, 5, 23, 19);
 		close.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(JFrame.EXIT_ON_CLOSE);
