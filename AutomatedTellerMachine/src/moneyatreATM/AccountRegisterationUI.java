@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -24,24 +25,25 @@ public class AccountRegisterationUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AccountRegisterationUI window = new AccountRegisterationUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AccountRegisterationUI window = new AccountRegisterationUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public AccountRegisterationUI() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -131,18 +133,7 @@ public class AccountRegisterationUI {
 		FemaleCheckbox.setForeground(Color.WHITE);
 		AccountOpeningForm.add(FemaleCheckbox);
 		
-		JButton RegisterButton = new JButton("REGISTER");
-		RegisterButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		RegisterButton.setBackground(Color.WHITE);
-		RegisterButton.setBounds(245, 239, 105, 23);
-		RegisterButton.setForeground(new Color(75,0,130));
-		RegisterButton.setFocusPainted(false);
-		RegisterButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		AccountOpeningForm.add(RegisterButton);
+		
 		
 		JTextArea AccountNumberInput = new JTextArea();
 		AccountNumberInput.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
@@ -160,6 +151,35 @@ public class AccountRegisterationUI {
 		JTextArea NationalIDInput = new JTextArea();
 		NationalIDInput.setBounds(161, 183, 189, 22);
 		AccountOpeningForm.add(NationalIDInput);
+		
+		JButton RegisterButton = new JButton("REGISTER");
+		RegisterButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+		RegisterButton.setBackground(Color.WHITE);
+		RegisterButton.setBounds(245, 239, 105, 23);
+		RegisterButton.setForeground(new Color(75,0,130));
+		RegisterButton.setFocusPainted(false);
+		RegisterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Accounts newAccount = new Accounts(NameInput.getText(),Integer.parseInt(PasswordInput.getText()),0.0,NationalIDInput.getText());
+				if(MaleCheckbox.isSelected())
+				{
+					newAccount.setGender("MALE");
+				}
+				else if(FemaleCheckbox.isSelected())
+				{
+					newAccount.setGender("FEMALE");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Please Select the Gender!");
+				}
+				Moneyatre.AccountsList.put(AccountNumberInput.getText(), newAccount);
+				JOptionPane.showMessageDialog(null, "Account Added Successfully");
+				frame.setVisible(false);
+				new HomeScreen();
+				
+			}
+		});
+		AccountOpeningForm.add(RegisterButton);
 		
 	}
 }

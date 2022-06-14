@@ -10,6 +10,8 @@ import java.util.*;
 
 public class Moneyatre {
  static Map<String,Accounts> AccountsList = new HashMap<String,Accounts>();
+ static Map<String,String>AdminUsers= new HashMap<String,String>(){{put("MATM-1146","1468");}};
+ 
 
 public static void addAccount(String accountNumber,Accounts newAccount) {
 	try {
@@ -25,20 +27,43 @@ public static void printAccounts()
 {
 	System.out.println(AccountsList.toString());
 }
-public static void verify(String accountNumber,int Pincode) {
+public static String verify(String accountNumber,int Pincode) {
 	if(AccountsList.containsKey(accountNumber)) {
 		if(AccountsList.get(accountNumber).password==Pincode)
 		{
-			System.out.println("Verified");
+			return "verified";
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "INVALID PINCODE");
+			return "invalid password";
 		}
 		
 		
 	}
 	else {
-		JOptionPane.showMessageDialog(null,"INVALID ACCOUNT");
+		return "invalid account";
+	}
+		
+	
+	
+}
+public static String verify(String accountNumber,String password) {
+	if(AdminUsers.containsKey(accountNumber)) {
+		if(AdminUsers.get(accountNumber).equals(password))
+		{
+			
+			
+			return "verified";
+		}
+		else {
+			
+			return "invalid password";
+		}
+		
+		
+	}
+	else {
+
+		return "inavlid account";
 	}
 		
 	
@@ -92,4 +117,13 @@ public static String getAccountBalance(String accountNumber) {
 public static String getAccountTitle(String accountNumber) {
 	return AccountsList.get(accountNumber).getName();
 }
+public static void print() {
+	Iterator listIterator = AccountsList.entrySet().iterator();
+	while(listIterator.hasNext()) {
+		Map.Entry mapElement= (Map.Entry)listIterator.next();
+		System.out.println("AccountNumber: "+mapElement.getKey()+"\nName: "+AccountsList.get(mapElement.getKey()).Name+"\nPassword: "+ +AccountsList.get(mapElement.getKey()).password+"\nCNIC: "+AccountsList.get(mapElement.getKey()).NationalID+"\nGender: "+ AccountsList.get(mapElement.getKey()).Gender);
+	}
 }
+}
+
+

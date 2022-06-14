@@ -44,6 +44,7 @@ public class HomeScreen {
 	 */
 	public HomeScreen() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**

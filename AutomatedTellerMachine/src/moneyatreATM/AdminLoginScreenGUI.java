@@ -166,7 +166,12 @@ public class AdminLoginScreenGUI {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e)
 			{
-				Moneyatre.verify(accountNumberInput.getText(), Integer.parseInt(passwordInput.getText()));
+				String verification=Moneyatre.verify(accountNumberInput.getText(), (passwordInput.getText()));
+				switch(verification) {
+				case "verified":frame.setVisible(false); AccountRegisterationUI registerAccount= new AccountRegisterationUI();break;
+				case "invalid password":frame.setVisible(false);JOptionPane.showMessageDialog(null, "INCORRECT PASSWORD");break;
+				case"invalid account": frame.setVisible(false);JOptionPane.showMessageDialog(null, "INVALID ACCOUNT");
+				}
 			}
 		});
 		

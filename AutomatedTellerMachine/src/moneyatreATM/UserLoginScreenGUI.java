@@ -7,10 +7,9 @@ import java.awt.event.MouseEvent;
 //import java.awt.event.MouseListener;
 //import java.util.ArrayList;
 import java.awt.*;
-import javax.swing.*;
+
 //import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
+import javax.swing.*;
 //import java.awt.Dialog.ModalExclusionType;
 import javax.swing.border.LineBorder;
 
@@ -166,7 +165,13 @@ public class UserLoginScreenGUI {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e)
 			{
-				Moneyatre.verify(accountNumberInput.getText(), Integer.parseInt(passwordInput.getText()));
+			String verification=Moneyatre.verify(accountNumberInput.getText(), Integer.parseInt(passwordInput.getText()));
+			switch(verification) {
+			case "verified":frame.setVisible(false); System.exit(0);;break;
+			case "invalid password":frame.setVisible(false);JOptionPane.showMessageDialog(null, "INCORRECT PASSWORD");break;
+			case"invalid account": frame.setVisible(false);JOptionPane.showMessageDialog(null, "INVALID ACCOUNT");break;
+			}
+				
 			}
 		});
 		
