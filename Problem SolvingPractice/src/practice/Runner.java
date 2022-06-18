@@ -3,7 +3,8 @@ package practice;
 public class Runner {
 
 	public static void main(String[] args) {
-		System.out.println(CricketProblem.Cricket(0,0,1,1,0));
+		int[] array={15,-1,8,2,5,11,7,10};
+		System.out.println(LongestIncreasingSubsequence.LIS(array));
 
 	}
 
