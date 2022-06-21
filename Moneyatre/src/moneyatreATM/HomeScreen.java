@@ -68,7 +68,7 @@ public class HomeScreen {
 		
 		JLabel TitleLabel = new JLabel("Moneyatre\n");
 		TitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		TitleLabel.setBounds(49, 22, 181, 40);
+		TitleLabel.setBounds(60, 22, 180, 40);
 		TitleLabel.setForeground(new Color(75,0,130));
 		TitleLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
 		TitlePanel.add(TitleLabel);
