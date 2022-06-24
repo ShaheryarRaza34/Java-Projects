@@ -99,7 +99,7 @@ public class FundsTransfer {
 		});
 		DepositButton.setForeground(new Color(75,0,130));
 		DepositButton.setBackground(Color.WHITE);
-		DepositButton.setBounds(222, 137, 68, 16);
+		DepositButton.setBounds(213, 137, 77, 16);
 		DepositButton.setFocusPainted(false);
 		outerPanel.add(DepositButton);
 

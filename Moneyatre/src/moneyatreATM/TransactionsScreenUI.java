@@ -122,20 +122,27 @@ public class TransactionsScreenUI {
 		WithdrawButton.setBackground(Color.white);
 		WithdrawButton.setFocusPainted(false);
 		WithdrawButton.setBounds(10, 224, 202, 48);
+		WithdrawButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new WithdrawScreenUI();
+				frame.setVisible(false);
+			}
+		});
 		background.add(WithdrawButton);
 		
 		JButton DepositButton = new JButton("FUNDS TRANSFER");
+		
+		DepositButton.setForeground(new Color(75, 0, 130));
+		DepositButton.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
+		DepositButton.setFocusPainted(false);
+		DepositButton.setBackground(Color.WHITE);
+		DepositButton.setBounds(238, 224, 202, 48);
 		DepositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new FundsTransfer(AccountNumber);
 				frame.setVisible(false);
 			}
 		});
-		DepositButton.setForeground(new Color(75, 0, 130));
-		DepositButton.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		DepositButton.setFocusPainted(false);
-		DepositButton.setBackground(Color.WHITE);
-		DepositButton.setBounds(238, 224, 202, 48);
 		background.add(DepositButton);
 		
 		JButton WithdrawButton_2 = new JButton("PIN CHANGE");
