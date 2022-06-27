@@ -124,7 +124,7 @@ public class TransactionsScreenUI {
 		WithdrawButton.setBounds(10, 224, 202, 48);
 		WithdrawButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new WithdrawScreenUI();
+				new WithdrawScreenUI(AccountNumber);
 				frame.setVisible(false);
 			}
 		});
@@ -161,7 +161,7 @@ public class TransactionsScreenUI {
 		CloseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
-				new ThankyouScreen();
+				new HomeScreen();
 			}
 		});
 		background.add(CloseButton);

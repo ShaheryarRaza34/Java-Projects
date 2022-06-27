@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.EventListener;
 
 import javax.swing.JFrame;
@@ -73,6 +75,19 @@ public class HomeScreen {
 		TitleLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
 		TitlePanel.add(TitleLabel);
 		
+		JLabel CloseButton = new JLabel("X");
+		CloseButton.setHorizontalAlignment(SwingConstants.CENTER);
+		CloseButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+		CloseButton.setForeground(new Color(75,0,130));
+		CloseButton.setBounds(268, 11, 22, 14);
+		CloseButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				new ThankyouScreen();
+			}
+		});
+		
+		TitlePanel.add(CloseButton);
 		JPanel OptionsPanel = new JPanel();
 		OptionsPanel.setBounds(0, 85, 300, 215);
 		OptionsPanel.setLayout(null);
@@ -120,6 +135,7 @@ public class HomeScreen {
 			}
 		});
 		OptionsPanel.add(AdminLogin);
+		
 		
 	}
 }

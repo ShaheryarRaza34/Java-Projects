@@ -39,8 +39,8 @@ public class WithdrawScreenUI {
 	/**
 	 * Create the application.
 	 */
-	public WithdrawScreenUI() {
-		initialize();
+	public WithdrawScreenUI(String AccountNumber) {
+		initialize(AccountNumber);
 		frame.setVisible(true);
 	}
 
@@ -48,7 +48,7 @@ public class WithdrawScreenUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String AccountNumber) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 300, 160);
 		frame.setUndecorated(true);
@@ -85,7 +85,7 @@ public class WithdrawScreenUI {
 		AmountPanel.setLayout(null);
 		
 		AmountInput = new JTextField();
-		AmountInput.setForeground(Color.LIGHT_GRAY);
+		AmountInput.setForeground(Color.DARK_GRAY);
 		AmountInput.setHorizontalAlignment(SwingConstants.CENTER);
 		AmountInput.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		AmountInput.setBorder(null);
@@ -108,7 +108,10 @@ public class WithdrawScreenUI {
 		ConfirmButton.setFocusPainted(false);
 		ConfirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				Moneyatre.withdraw(AccountNumber, Double.parseDouble(AmountInput.getText()));
+				frame.setVisible(false);
+				new TransactionsScreenUI(Moneyatre.getAccountTitle(AccountNumber),Moneyatre.getAccountBalance(AccountNumber),AccountNumber);
+				
 			}});
 		AmountPanel.add(ConfirmButton);
 	}
